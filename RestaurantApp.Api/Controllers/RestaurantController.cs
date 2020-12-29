@@ -28,9 +28,16 @@ namespace RestaurantApp.Api.Controllers
         }
 
         [HttpGet("ingredients")]        
-        public IActionResult GetIngredientList()
+        public IActionResult GetIngredientList([FromQuery] string district)
         {
-            var result = restaurantService.GetIngredientList();
+            var result = restaurantService.GetIngredientList(district);
+            return Ok(result);
+        }
+
+        [HttpGet("district")]
+        public IActionResult GetRestaurantByDistrict([FromQuery] string district)
+        {
+            var result = restaurantService.GetRestaurantByDistrict(district);
             return Ok(result);
         }
     }

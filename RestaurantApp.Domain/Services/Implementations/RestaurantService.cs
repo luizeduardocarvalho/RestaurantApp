@@ -24,9 +24,14 @@ namespace RestaurantApp.Domain.Services.Implementations
             return restaurantRepository.GetRestaurantById(id);
         }
 
-        public IList<RestaurantIngredientsDto> GetIngredientList()
+        public IList<RestaurantIngredientsDto> GetIngredientList(string district)
         {
-            return restaurantRepository.GetIngredientList();
+            return restaurantRepository.GetIngredientListByDistrict(district);
+        }
+
+        public IList<Restaurant> GetRestaurantByDistrict(string district)
+        {
+            return restaurantRepository.GetRestaurantByDistrict(district);
         }
     }
 }

@@ -16,6 +16,7 @@ namespace RestaurantApp.Infrastructure.Repositories.Mappings
 
             builder.Property(t => t.Id).HasColumnName("id").IsRequired().HasColumnType("INT").ValueGeneratedOnAdd();
             builder.Property(t => t.Name).HasColumnName("name").IsRequired().HasColumnType("VARCHAR").HasMaxLength(150);
+            builder.Property(t => t.District).HasColumnName("district").IsRequired().HasColumnType("VARCHAR").HasMaxLength(80);
 
             builder.HasKey(t => t.Id);
         }

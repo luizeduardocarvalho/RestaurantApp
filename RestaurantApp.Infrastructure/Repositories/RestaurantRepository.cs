@@ -25,9 +25,20 @@ namespace RestaurantApp.Infrastructure.Repositories
             return Query().FirstOrDefault(x => x.Id == id);
         }
 
-        public IList<RestaurantIngredientsDto> GetIngredientList()
+        public IList<Restaurant> GetRestaurantByDistrict(string district)
         {
-            return Query().Include(t => t.RestaurantIngredients).Select(t => new RestaurantIngredientsDto
+            return Query().Where(t => t.District.Equals(district)).ToList();
+        }
+
+        public IList<RestaurantIngredientsDto> GetIngredientListByDistrict(string district)
+        {
+            var query = Query();
+            if (!string.IsNullOrEmpty(district))
+            {
+                query = query.Where(t => t.District.Equals(district));
+            }
+
+            return query.Include(t => t.RestaurantIngredients).Select(t => new RestaurantIngredientsDto
             {
                 RestaurantName = t.Name,
                 Ingredients = t.RestaurantIngredients.Select(i => new IngredientsDto
@@ -37,6 +48,6 @@ namespace RestaurantApp.Infrastructure.Repositories
                     Date = i.Date
                 }).ToList()
             }).ToList();
-        } 
+        }
     }
 }

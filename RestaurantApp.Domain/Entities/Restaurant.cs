@@ -7,13 +7,15 @@ namespace RestaurantApp.Domain.Entities
     [Table("restaurants")]
     public class Restaurant : IEntity
     {
-        public Restaurant(string name)
+        public Restaurant(string name, string district)
         {
             Name = name;
+            District = district;
         }
         
         public int Id { get; set; }        
         public string Name { get; set; }
+        public string District { get; set; }
         public IList<RestaurantIngredient> RestaurantIngredients { get; set; }
     }
 }
