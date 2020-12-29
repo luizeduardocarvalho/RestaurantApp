@@ -27,7 +27,7 @@ namespace RestaurantApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("/ingredients")]        
+        [HttpGet("ingredients")]        
         public IActionResult GetIngredientList()
         {
             var result = restaurantService.GetIngredientList();
