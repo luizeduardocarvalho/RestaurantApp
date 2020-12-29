@@ -1,5 +1,6 @@
 ﻿using RestaurantApp.Domain.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using RestaurantApp.Domain.Entities.Dtos;
 
 namespace RestaurantApp.Api.Controllers
 {
@@ -38,6 +39,13 @@ namespace RestaurantApp.Api.Controllers
         public IActionResult GetRestaurantByDistrict([FromQuery] string district)
         {
             var result = restaurantService.GetRestaurantByDistrict(district);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        public IActionResult CreateRestaurant([FromBody] CreateRestaurantDto newRestaurant)
+        {
+            var result = restaurantService.CreateRestaurant(newRestaurant);
             return Ok(result);
         }
     }

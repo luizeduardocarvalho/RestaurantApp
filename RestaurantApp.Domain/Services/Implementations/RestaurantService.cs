@@ -1,6 +1,7 @@
 ﻿using RestaurantApp.Domain.Entities;
 using RestaurantApp.Domain.Entities.Dtos;
 using RestaurantApp.Domain.Services.Contracts;
+using System;
 using System.Collections.Generic;
 
 namespace RestaurantApp.Domain.Services.Implementations
@@ -32,6 +33,19 @@ namespace RestaurantApp.Domain.Services.Implementations
         public IList<Restaurant> GetRestaurantByDistrict(string district)
         {
             return restaurantRepository.GetRestaurantByDistrict(district);
+        }
+
+        public Restaurant CreateRestaurantDto(CreateRestaurantDto restaurant)
+        {
+            var newRestaurant = new Restaurant(restaurant.Name, restaurant.District);
+            var result = restaurantRepository.Insert(newRestaurant);
+
+            if(result)
+            {
+                return newRestaurant;
+            }
+
+            throw new InvalidOperationException();
         }
     }
 }
