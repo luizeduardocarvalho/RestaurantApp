@@ -11,7 +11,7 @@ namespace RestaurantApp.Domain
             services.AddTransient<IRestaurantService, RestaurantService>();
             services.AddTransient<IIngredientService, IngredientService>();
             services.AddTransient<ISupermarketService, SupermarketService>();
-            services.AddTransient<IRestaurantIngredientService, RestaurantIngredientService>();
+            services.AddTransient<IRecipeService, RecipeService>();
 
             return services;
         }

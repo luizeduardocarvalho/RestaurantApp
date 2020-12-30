@@ -4,8 +4,7 @@ namespace RestaurantApp.Domain.Entities.Dtos
 {
     public class IngredientsDto
     {
-        public string Ingredient { get; set; }
+        public int IngredientId { get; set; }
         public double Amount { get; set; }
-        public DateTime Date { get; set; }
     }
 }

@@ -37,24 +37,29 @@ namespace RestaurantApp.Infrastructure.Repositories
                           .ToList();
         }
 
-        public IList<RestaurantIngredientsDto> GetIngredientListByDistrict(string district)
-        {
-            var query = Query();
-            if (!string.IsNullOrEmpty(district))
-            {
-                query = query.Where(t => t.District.Equals(district));
-            }
+        //public IList<GetRestaurantsRecipesDto> GetRestaurantsRecipes(int id)
+        //{
 
-            return query.Include(t => t.RestaurantIngredients).Select(t => new RestaurantIngredientsDto
-            {
-                RestaurantName = t.Name,
-                Ingredients = t.RestaurantIngredients.Select(i => new IngredientsDto
-                {
-                    Amount = i.Amount,
-                    Ingredient = i.Ingredient.Name,
-                    Date = i.Date
-                }).ToList()
-            }).ToList();
-        }
+        //}
+
+        //public IList<RestaurantIngredientsDto> GetIngredientListByDistrict(string district)
+        //{
+        //    var query = Query();
+        //    if (!string.IsNullOrEmpty(district))
+        //    {
+        //        query = query.Where(t => t.District.Equals(district));
+        //    }
+
+        //    return query.Include(t => t.RestaurantIngredients).Select(t => new RestaurantIngredientsDto
+        //    {
+        //        RestaurantName = t.Name,
+        //        Ingredients = t.RestaurantIngredients.Select(i => new IngredientsDto
+        //        {
+        //            Amount = i.Amount,
+        //            Ingredient = i.Ingredient.Name,
+        //            Date = i.Date
+        //        }).ToList()
+        //    }).ToList();
+        //}
     }
 }

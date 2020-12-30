@@ -14,6 +14,6 @@ namespace RestaurantApp.Domain.Entities
 
         public int Id { get; set; }
         public string Name { get; set; }
-        public IReadOnlyCollection<RestaurantIngredient> RestaurantIngredients { get; set; }
+        public IReadOnlyCollection<RecipeIngredient> RecipeIngredients { get; set; }
     }
 }

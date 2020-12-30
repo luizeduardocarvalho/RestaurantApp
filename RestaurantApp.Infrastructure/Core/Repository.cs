@@ -17,7 +17,7 @@ namespace RestaurantApp.Infrastructure.Core
             dbSet = dbContext.Set<TEntity>();
         }
 
-        public bool Insert(TEntity entity)
+        public TEntity Insert(TEntity entity)
         {
             if (entity == null)
             {
@@ -27,7 +27,7 @@ namespace RestaurantApp.Infrastructure.Core
             dbSet.Add(entity);
             Commit();
 
-            return true;
+            return entity;
         }
 
         public bool Delete(TEntity entity)

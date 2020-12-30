@@ -10,7 +10,8 @@ namespace RestaurantApp.Domain.Services.Contracts
     {
         IList<GetRestaurantsDto> GetAll();
         Restaurant GetRestaurantById(int id);
-        IList<RestaurantIngredientsDto> GetIngredientListByDistrict(string district);
+        //IList<GetRestaurantsRecipesDto> GetRestaurantsRecipes(int id)
+        //IList<RestaurantIngredientsDto> GetIngredientListByDistrict(string district);
         IList<GetRestaurantsDto> GetRestaurantByDistrict(string district);
     }
 }

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using RestaurantApp.Domain.Entities;
-using RestaurantApp.Domain.Entities.Dtos;
 using RestaurantApp.Domain.Entities.Dtos.Restaurants;
 using RestaurantApp.Domain.Services.Contracts;
 using System;
@@ -29,10 +28,10 @@ namespace RestaurantApp.Domain.Services.Implementations
             return restaurantRepository.GetRestaurantById(id);
         }
 
-        public IList<RestaurantIngredientsDto> GetIngredientList(string district)
-        {
-            return restaurantRepository.GetIngredientListByDistrict(district);
-        }
+        //public IList<RestaurantIngredientsDto> GetIngredientList(string district)
+        //{
+        //    return restaurantRepository.GetIngredientListByDistrict(district);
+        //}
 
         public IList<GetRestaurantsDto> GetRestaurantByDistrict(string district)
         {
@@ -44,12 +43,7 @@ namespace RestaurantApp.Domain.Services.Implementations
             var newRestaurant = new Restaurant(restaurant.Name, restaurant.District);
             var result = restaurantRepository.Insert(newRestaurant);
 
-            if (result)
-            {
-                return newRestaurant;
-            }
-
-            throw new InvalidOperationException();
+            return result;
         }
 
         public GetRestaurantsDto DeleteById(int id)

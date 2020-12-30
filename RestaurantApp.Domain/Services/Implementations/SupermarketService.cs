@@ -38,12 +38,7 @@ namespace RestaurantApp.Domain.Services.Implementations
             var newSupermarket = new Supermarket(supermarket.Name, supermarket.District);
             var result = supermarketRepository.Insert(newSupermarket);
 
-            if (result)
-            {
-                return newSupermarket;
-            }
-
-            throw new InvalidOperationException();
+            return result;
         }
 
         public GetSupermarketsDto DeleteById(int id)

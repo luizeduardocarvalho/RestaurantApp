@@ -4,14 +4,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RestaurantApp.Domain.Entities
 {    
-    [Table("restaurant_ingredient")]
-    public class RestaurantIngredient : IEntity
+    [Table("restaurant_recipe")]
+    public class RestaurantRecipe : IEntity
     {
         public int RestaurantId { get; set; }
         public Restaurant Restaurant { get; set; }
-        public int IngredientId { get; set; }
-        public Ingredient Ingredient { get; set; }
-        public double Amount { get; set; }
-        public DateTime Date { get; set; }
+        public int RecipeId { get; set; }
+        public Recipe Recipe { get; set; }
     }
 }
