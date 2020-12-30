@@ -7,6 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using AutoMapper;
+using RestaurantApp.Domain.Services;
 
 namespace RestaurantApp.Api
 {
@@ -30,6 +32,9 @@ namespace RestaurantApp.Api
 
             services.AddDomainServices();
             services.AddInfrastructureServices();
+
+            services.AddAutoMapper(typeof(Startup));
+            services.AddSingleton(Bootstraper.MapperStartUp());
 
             services.AddSwaggerGen();
         }

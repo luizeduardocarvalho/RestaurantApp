@@ -30,6 +30,19 @@ namespace RestaurantApp.Infrastructure.Core
             return true;
         }
 
+        public bool Delete(TEntity entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
+            dbSet.Remove(entity);
+            Commit();
+
+            return true;
+        }
+
         public IQueryable<TEntity> Query()
         {
             return dbSet.AsNoTracking();
