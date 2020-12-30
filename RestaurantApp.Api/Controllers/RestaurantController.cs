@@ -1,6 +1,6 @@
-﻿using RestaurantApp.Domain.Services.Contracts;
-using Microsoft.AspNetCore.Mvc;
-using RestaurantApp.Domain.Entities.Dtos;
+﻿using Microsoft.AspNetCore.Mvc;
+using RestaurantApp.Domain.Entities.Dtos.Restaurants;
+using RestaurantApp.Domain.Services.Contracts;
 
 namespace RestaurantApp.Api.Controllers
 {
@@ -28,7 +28,7 @@ namespace RestaurantApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("ingredients")]        
+        [HttpGet("ingredients")]
         public IActionResult GetIngredientList([FromQuery] string district)
         {
             var result = restaurantService.GetIngredientList(district);
@@ -45,7 +45,24 @@ namespace RestaurantApp.Api.Controllers
         [HttpPost]
         public IActionResult CreateRestaurant([FromBody] CreateRestaurantDto newRestaurant)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var result = restaurantService.CreateRestaurant(newRestaurant);
+            if (result is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteById(int id)
+        {
+            var result = restaurantService.DeleteById(id);
             return Ok(result);
         }
     }

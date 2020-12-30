@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using RestaurantApp.Domain.Entities;
 using RestaurantApp.Domain.Entities.Dtos.Ingredients;
+using RestaurantApp.Domain.Entities.Dtos.Restaurants;
 
 namespace RestaurantApp.Domain.Services
 {
@@ -11,6 +12,7 @@ namespace RestaurantApp.Domain.Services
             var mapperConfiguration = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Ingredient, GetIngredientsDto>().ReverseMap();
+                cfg.CreateMap<Restaurant, GetRestaurantsDto>().ReverseMap();
             });
 
             return mapperConfiguration.CreateMapper();

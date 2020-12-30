@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using RestaurantApp.Domain.Entities;
 using RestaurantApp.Domain.Entities.Dtos;
+using RestaurantApp.Domain.Entities.Dtos.Restaurants;
 using RestaurantApp.Domain.Services.Contracts;
 using RestaurantApp.Infrastructure.Core;
 using System.Collections.Generic;
@@ -10,14 +12,17 @@ namespace RestaurantApp.Infrastructure.Repositories
 {
     public class RestaurantRepository : Repository<Restaurant>, IRestaurantRepository
     {
-        public RestaurantRepository(RestaurantAppContext context)
+        private readonly IMapper mapper;
+
+        public RestaurantRepository(RestaurantAppContext context, IMapper mapper)
             : base(context)
         {
+            this.mapper = mapper;
         }
 
-        public IList<Restaurant> GetAll()
+        public IList<GetRestaurantsDto> GetAll()
         {
-            return Query().ToList();
+            return Query().Select(t => mapper.Map<GetRestaurantsDto>(t)).ToList();
         }
 
         public Restaurant GetRestaurantById(int id)
@@ -25,9 +30,11 @@ namespace RestaurantApp.Infrastructure.Repositories
             return Query().FirstOrDefault(x => x.Id == id);
         }
 
-        public IList<Restaurant> GetRestaurantByDistrict(string district)
+        public IList<GetRestaurantsDto> GetRestaurantByDistrict(string district)
         {
-            return Query().Where(t => t.District.Equals(district)).ToList();
+            return Query().Where(t => t.District.Equals(district))
+                          .Select(t => mapper.Map<GetRestaurantsDto>(t))
+                          .ToList();
         }
 
         public IList<RestaurantIngredientsDto> GetIngredientListByDistrict(string district)
