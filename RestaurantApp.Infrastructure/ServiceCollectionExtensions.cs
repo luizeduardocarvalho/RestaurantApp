@@ -10,6 +10,7 @@ namespace RestaurantApp.Infrastructure
         {
             services.AddTransient<IRestaurantRepository, RestaurantRepository>();
             services.AddTransient<IIngredientRepository, IngredientRepository>();
+            services.AddTransient<ISupermarketRepository, SupermarketRepository>();
             services.AddTransient<IRestaurantIngredientRepository, RestaurantIngredientRepository>();
 
             return services;

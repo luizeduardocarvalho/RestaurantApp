@@ -57,7 +57,7 @@ namespace RestaurantApp.Domain.Services.Implementations
             var restaurant = restaurantRepository.GetRestaurantById(id);
             if (restaurant is null)
             {
-                throw new Exception("Ingredient not found.");
+                throw new Exception("Restaurant not found.");
             }
 
             restaurantRepository.Delete(restaurant);
